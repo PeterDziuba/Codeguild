@@ -1,4 +1,4 @@
-election = {"Kyle":0, "Peter":0, "Jeff":0}
+election = {}
 vote = True
 
 while vote:
@@ -9,6 +9,8 @@ while vote:
 		answer = input()
 		if answer in election:
 			election[answer] += 1
+		else:
+			election[answer] = 1
 	else: 
 		vote = False
 
