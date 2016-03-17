@@ -1,3 +1,4 @@
+import os
 phonebook = {} #The phonebook is our dictionary.
 looper = True  #The looper variable allows people to do
 			   #more than one thing
@@ -8,10 +9,11 @@ print("Welcome to the Rose City Phone Guide!")
 while looper:
 	#Let the user choose which task to perform.
 	print("Would you like to add a name and phone number,",
-		"change a phone number, or lookup a phone number?",
-		"Type add/change/lookup.")
+		"change a phone number, lookup a phone number, or",
+		"list all the names? Type add/change/lookup/list.")
+	print("If you would like to see the whole book, type 'book'.")
 	user_choice = input()
-
+	os.system('clear')
 	#If the user wants to add a name and number:
 	if user_choice == "add":
 		print("Please enter the name of the person you",
@@ -23,6 +25,7 @@ while looper:
 		print("Thank you!")
 		print("Would you like to do anything else?")
 		user_choice2 = input()
+		os.system('clear')
 		if user_choice2 == "n":
 			looper = False
 
@@ -41,6 +44,7 @@ while looper:
 		print("Thank you!")
 		print("Would you like to do anything else?")
 		user_choice2 = input()
+		os.system('clear')
 		if user_choice2 == "n":
 			looper = False
 
@@ -51,11 +55,30 @@ while looper:
 		if user_name not in phonebook:
 			print("That user is not in the book yet. I'm sorry.")
 		else:
-			looker_upper = phonebook[user_name]
-			print(user_name + "'s number is", looker_upper + ".")	
+			print(user_name + "'s number is", phonebook[user_name] + ".")	
 		print("Thank you!")
 		print("Would you like to do anything else?")
 		user_choice2 = input()
+		os.system('clear')
+		if user_choice2 == "n":
+			looper = False
+
+	#If the user wants to see all the names in the book:
+	if user_choice == "list":
+		print(sorted(phonebook))
+		print("Thank you!")
+		print("Would you like to do anything else?")
+		user_choice2 = input()
+		os.system('clear')
+		if user_choice2 == "n":
+			looper = False
+
+	if user_choice == "book":
+		print(sorted(phonebook.items()))
+		print("Thank you!")
+		print("Would you like to do anything else?")
+		user_choice2 = input()
+		os.system('clear')
 		if user_choice2 == "n":
 			looper = False
 
