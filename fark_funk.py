@@ -144,14 +144,10 @@ def dice_roller(scoring_list, rolling_set, dice_dictionary):
 def farkle_no_score(total_score, player_one_score, player_two_score, rolling_set):
 	"""This function displays the game stats when someone farkles. It also runs the change player function."""
 	print('Farkle, you lose!')
-	if total_score >= 500:
-		print('Stealable Score:', total_score)
 	print('Player One Score:', player_one_score)
 	print('Player Two Score:', player_two_score)
 	print('')
-	print("{} dice/die left to roll.".format(len(rolling_set)))
 	
-
 def boolean_steal_choice(total_score, looper):
 	"""This function gives you the chance to steal points when your opponent farkles."""
 	if total_score >= 500:
@@ -209,7 +205,7 @@ while my_looper:
 	#Tell the player whose turn it is and how many dice to roll
 	player_turn_banner(player_turn)
 	rolling_length(rolling_set)
-	my_looper = user_boolean_choice(my_looper)
+	#my_looper = user_boolean_choice(my_looper)
 	os.system('clear')
 	#Roll the dice, add to the counters, and tally the current score
 	scoring_list = dice_roller(scoring_list, rolling_set, my_dice)
@@ -220,6 +216,7 @@ while my_looper:
 	if stage_score:
 		total_score = add_total_score(stage_score, total_score)
 		player_turn_banner(player_turn)
+		print("")
 		score_board(stage_score, total_score, player_one_score, player_two_score, player_turn, scoring_list, rolling_set)
 		#If the player has at least 500 points, they can choose to score their turn
 		if total_score >= 500:
@@ -228,10 +225,11 @@ while my_looper:
 				if roll_saver == 'save':
 					if player_turn: player_two_score += total_score
 					elif not player_turn: player_one_score += total_score
-					total_score = reset_score(total_score)
+					if not boolean_steal_choice(total_score, my_looper):
+						total_score = reset_score(total_score)
+						rolling_set = reset_rolling_set(rolling_set)
 					player_turn = change_players(player_turn)
 					player_turn_banner(player_turn)
-					rolling_set = reset_rolling_set(rolling_set)
 			if not rolling_set:
 				print("You scored all your dice!")
 				rolling_set = reset_rolling_set(rolling_set)
@@ -242,13 +240,17 @@ while my_looper:
 				
 	#If the player does farkle:
 	elif not stage_score:
+		player_turn_banner(player_turn)
+		print("")
 		print("Your Roll:", scoring_list)
 		farkle_no_score(total_score, player_one_score, player_two_score, rolling_set)
+		print("")
 		player_turn = change_players(player_turn)
 		player_turn_banner(player_turn)
-		if not boolean_steal_choice(total_score, my_looper):
-			total_score = reset_score(total_score)
-			rolling_set = reset_rolling_set(rolling_set)
+		print("")
+		#if not boolean_steal_choice(total_score, my_looper):
+		total_score = reset_score(total_score)
+		rolling_set = reset_rolling_set(rolling_set)
 	stage_score = reset_score(stage_score)
 	my_looper = user_boolean_choice(my_looper)
 	os.system('clear')
