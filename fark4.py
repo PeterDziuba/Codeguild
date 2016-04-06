@@ -226,11 +226,11 @@ while looper_1:
 	dice_dict = {1 : random.randint(1, 6), 2 : random.randint(1, 6), 3 : random.randint(1, 6), 4 : random.randint(1, 6), 5: random.randint(1, 6)}
 	
 players = {"Player One": player_one_score, "Player Two": player_two_score}
-winner = (max(players, key=winner.get, default="No one"))
+winner = (max(players, key=players.get, default="No one"))
 
 print("Player One's Final Score: {}".format(player_one_score))
 print("Player Two's Final Score: {}".format(player_two_score))
 print(winner, "wins!")
-winners = (max(election, key=election.get, default="No one"))
+
 
 

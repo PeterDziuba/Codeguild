@@ -36,7 +36,7 @@ def lower_case_machine(word_list):
 def punctuation_stripper(lower_case_word_list):
 	"""This will strip the punctuation off, Andrew"""
 	final_word_list = []
-	my_punct = ['.', '?', '!', ',', '/', '\\', '"']
+	my_punct = ['.', '?', '!', ',', '/', '\\', '"', '*']
 	for i in lower_case_word_list:
 		if i[-1] in my_punct:
 			i = i[:-1]

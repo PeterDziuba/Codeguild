@@ -175,8 +175,8 @@ city_to_accessible_cities_with_travel_time = {
 }
 
 loop_bool = True
+
 while loop_bool:
 	user_choice = get_user_choice()
 	user_hops = get_user_hops()
 	loop_bool = process_choices_and_hops(user_choice, user_hops, city_to_accessible_cities_with_travel_time, loop_bool)
-

@@ -84,8 +84,8 @@ user_class_list = [User(i['user_name']) for i in raw_user_data]
 review_class_list = [Review(i['business_name'], i['user_name'],
                      i['rating'], i['text']) for i in raw_review_data]
 
-user_search = input('Enter a business name\n: ')
-search_business_name(review_class_list, user_search)
+business_name_search = input('Enter a business name\n: ')
+search_business_name(review_class_list, business_name_search)
 
-user_search_again = input('Enter a user name\n: ')
-search_user_name(review_class_list, user_search_again)
+user_name_search = input('Enter a user name\n: ')
+search_user_name(review_class_list, user_name_search)

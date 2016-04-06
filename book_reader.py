@@ -49,6 +49,14 @@ def pair_listing_funct(list):
 		pair_list.append(list[i])
 	return pair_list
 
+def triple_listing_funct(list):
+	"""This doesn't work the way I want it to."""
+	triple_list = []
+	for i in range(len(list) - 2):
+		list[i] = list[i] + " " + list[i+1] + " " + list[i+2]
+		triple_list.append(list[i])
+	return triple_list
+
 def sort_for_user_word(user_word, my_pair_list):
 	"""This function will create a list of pairs that
 	begin with the user's word."""
@@ -93,6 +101,4 @@ user_pair_list = sort_for_user_word(user_word, hamlet_pairs)
 user_pair_dict = make_a_dict(user_pair_list)
 most_common_user_pairs = sorted(user_pair_dict, key=user_pair_dict.get, reverse=True)
 print_first_ten_list_items(most_common_user_pairs, user_pair_dict)
-
-#print(user_pair_list[:50])
 

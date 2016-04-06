@@ -43,7 +43,6 @@ def phone_number_add(book):
 
 	return book
 
-
 def phone_number_change(book):
 	"""This allows users to change numbers in their phonebook."""
 	print("Whose number would you like to change?")
@@ -108,6 +107,3 @@ def phone_number_lookup(book):
 	if user_continue.lower() == 'y': phone_book_menu(book)
 
 phone_book_menu(my_book)
-
-
-

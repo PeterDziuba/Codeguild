@@ -9,19 +9,50 @@ dice_dict = {1 : random.randint(1,6), 2 : random.randint(1,6), 3 : random.randin
 rolling_set = set()
 scoring_list = []
 hold_back_number = 0
-looper_1 = True
+looper_1 = False
 counters = [0, 0, 0, 0, 0, 0]
 
 #Score Variables
 total_score = 0
 stage_score = 0
+player_one_score = 0
+player_two_score = 0
+player_one_name = "Player One"
+player_two_name = "Player Two"
+player_turn = 0
+steal_score = 0
 
 #Populate the dice dictionary before the game starts
 for i in dice_dict.keys():
 	rolling_set.add(i)
 
+print("Welcome to Farkle:")
+print("A Dumb Game with Dice.")
+time.sleep(1)
+print('...')
+time.sleep(1)
+print('Begin?')
+
+player_start = input("y/n:")
+if (player_start.lower() == 'y') or (player_start.lower() == 'yes'):
+	looper_1 = True
+
+os.system('clear')
+print("Player One's Turn:")
+print("")
+
+
 while looper_1:
-	print("Rolling Set 1", rolling_set)
+	stage_score = 0
+	if steal_score: stage_score += steal_score
+	if not player_turn:
+		print("Player One's Roll")
+		print("")
+	elif player_turn:
+		print("Player Two's Roll")
+		print("")
+	print("Rolling {} dice/die:".format(len(rolling_set)))
+	print("")
 	#Here we add the rolling dice to the scoring list.
 	#This gives us a snapshot of the die values.
 	if rolling_set:
@@ -92,17 +123,65 @@ while looper_1:
 				rolling_set.pop()
 	
 
+	if stage_score:
+		if not player_turn:
+			player_one_score += stage_score
+		elif player_turn: 
+			player_two_score += stage_score
+		total_score += stage_score
+		if steal_score:
+			if not player_turn:
+				player_one_score += steal_score
+			elif player_turn:
+				player_two_score += steal_score
+			total_score += steal_score
+	elif not stage_score:
+		total_score = 0
 
-	total_score += stage_score
-	print('Rolling set 2:', rolling_set)
-	print("Scoring list:", scoring_list)
-	print('Counters:', counters)
-	print('Stage score:', stage_score)
-	print('Total score:', total_score)
+
+	
+	print("Your Roll:", scoring_list)
+	print("Score Stolen:", steal_score)
+	print('Your Score this Roll:', stage_score)
+	print('Your Score this Round:', total_score)
+	print('Player One Score:', player_one_score)
+	print('Player Two Score:', player_two_score)
+	print("")
+	print("{} dice/die left to roll.".format(len(rolling_set)))
+	print("")
+	steal_score = 0
 
 	if stage_score == 0:
 		print('Farkle, you lose!')
-		quit()
+		print('Continue?')
+		user_choice = input()
+		if user_choice == 'n':
+			looper_1 = False
+		os.system('clear')
+		if player_turn:
+			player_turn -= 1
+			print("Player One's Turn:")
+			if rolling_set:
+				print("")
+				print("Steal the dice?")
+				user_steal = input()
+				if user_steal == 'y':
+					steal_score += total_score
+				else:
+					for i in range(1, 6):rolling_set.add(i)
+				total_score = 0
+		elif not player_turn:
+			player_turn += 1
+			print("Player Two's Turn:")
+			if rolling_set:
+				print("")
+				print("Steal the dice?")
+				user_steal = input()
+				if user_steal == 'y':
+					steal_score += total_score
+				else:
+					for i in range(1, 6):rolling_set.add(i)
+				total_score = 0
 
 
 	# hold_back_number = len(rolling_set)
@@ -112,16 +191,18 @@ while looper_1:
 	# if hold_back_number:
 	# 	for i in dice_dict.keys():
 	# 		rolling_set.add(i)
+	total_score += stage_score
 	if not rolling_set:
 		print('You scored all your dice!')
 		for i in dice_dict.keys(): rolling_set.add(i)
 
 
 
-	print('Roll Again?')
+	print('Continue?')
 	user_choice = input()
 	if user_choice == 'n':
 		looper_1 = False
+	os.system('clear')
 	del scoring_list[:]
 	stage_score = 0
 	counters = [0, 0, 0, 0, 0, 0]
