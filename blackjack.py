@@ -122,7 +122,7 @@ def hit_or_stay(my_hand, your_hand, deck):
     print('Hit or Stay?')
     user_play_blackjack = input(': ')
     if user_play_blackjack != 'stay':
-        if my_deck.card_list:
+        if deck.card_list:
             os.system('clear')
             deal_a_card(my_hand, your_hand, deck)
             print('Your Hand: ')
@@ -175,53 +175,55 @@ def score_the_game(my_hand, dealer_hand):
 
             print('A Tie! How Unlikely!')
 
+def main():
+    face_list = ['2', '3', '4', '5', '6', '7', '8',
+                 '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+    suit_list = ["Spades", "Diamonds", "Hearts", "Clubs"]
 
-face_list = ['2', '3', '4', '5', '6', '7', '8',
-             '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-suit_list = ["Spades", "Diamonds", "Hearts", "Clubs"]
+    my_deck = make_a_deck(face_list, suit_list)
 
-my_deck = make_a_deck(face_list, suit_list)
+    loop_bool = True
 
-loop_bool = True
+    while loop_bool:
+        if len(my_deck.card_list) <= 4:
+            print('You ran out of cards!')
+            print('Goodbye')
+            quit()
+        my_hand = Hand([])
+        dealer_hand = Hand([])
+        double_deal_hands(my_hand, dealer_hand, my_deck)
 
-while loop_bool:
-    if len(my_deck.card_list) <= 4:
-        print('You ran out of cards!')
-        print('Goodbye')
-        quit()
-    my_hand = Hand([])
-    dealer_hand = Hand([])
-    double_deal_hands(my_hand, dealer_hand, my_deck)
+        print('Your Hand: ')
+        print_a_card_list(my_hand)
+        print('')
+        print('Your Current Score: ')
+        print(my_hand.score_hand())
+        print('')
 
-    print('Your Hand: ')
-    print_a_card_list(my_hand)
-    print('')
-    print('Your Current Score: ')
-    print(my_hand.score_hand())
-    print('')
+        hit_or_stay(my_hand, dealer_hand, my_deck)
+        os.system('clear')
 
-    hit_or_stay(my_hand, dealer_hand, my_deck)
-    os.system('clear')
+        dealer_play_blackjack(my_hand, dealer_hand, my_deck)
 
-    dealer_play_blackjack(my_hand, dealer_hand, my_deck)
+        print('Your Cards:')
+        print_a_card_list(my_hand)
+        print('')
+        print('Your Score:')
+        print(my_hand.score_hand())
+        print('')
+        print('Dealer Cards: ')
+        print_a_card_list(dealer_hand)
+        print('')
+        print('Dealer Score: ')
+        print(dealer_hand.score_hand())
+        print('')
 
-    print('Your Cards:')
-    print_a_card_list(my_hand)
-    print('')
-    print('Your Score:')
-    print(my_hand.score_hand())
-    print('')
-    print('Dealer Cards: ')
-    print_a_card_list(dealer_hand)
-    print('')
-    print('Dealer Score: ')
-    print(dealer_hand.score_hand())
-    print('')
+        score_the_game(my_hand, dealer_hand)
 
-    score_the_game(my_hand, dealer_hand)
+        print('Play Again?')
+        user_continue = input(': ')
+        if user_continue == 'n':
+            loop_bool = False
+        os.system('clear')
 
-    print('Play Again?')
-    user_continue = input(': ')
-    if user_continue == 'n':
-        loop_bool = False
-    os.system('clear')
+main()
