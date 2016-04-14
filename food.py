@@ -1,5 +1,9 @@
 import os
 import random
+import json
+from nutritionix import Nutritionix
+print('Powered by Nutritionix API')
+
 file_list = []
 file_list_stripped = []
 with open('food.txt') as my_file:
@@ -46,7 +50,7 @@ def make_a_meal_plan(pantry, user_macro_goals):
       list_carb_tally += new_food.carbs_grams
       list_fat_tally += new_food.fat_grams
       list_calories_tally += new_food.calories
-      meal_plan_list.append(new_food.name)
+      meal_plan_list.append(new_food)
     meal_plan_list.append('Nutritional Information --- ')
     meal_plan_list.append("Total Calories: {}".format(list_calories_tally))
     meal_plan_list.append('Total Protein: {}'.format(list_protein_tally))
@@ -56,14 +60,28 @@ def make_a_meal_plan(pantry, user_macro_goals):
     return meal_plan_list
 
 def sort_meal_plans(pantry, user_macro_goals):
-    master_food_list = []
-    i_100_list_counter = 1000
-    while i_100_list_counter > 0:
-        food_list_one = make_a_meal_plan(my_pantry, user_macro_goals)
-        master_food_list.append(food_list_one)
-        i_100_list_counter -= 1
+    master_food_list = my_generator(1000, pantry, user_macro_goals)
+
+    #Save the code below, it actually works.
+    #i_100_list_counter = 1000
+    #while i_100_list_counter > 0:
+    #while my_generator(1000):
+        #food_list_one = make_a_meal_plan(pantry, user_macro_goals)
+        #master_food_list.append(food_list_one)
+        #i_100_list_counter -= 1
     sorted_food_list = sorted(master_food_list, key=lambda x: x[-1])
     return sorted_food_list
+
+def my_generator(n, pantry, user_macro_goals):
+    while n > 0:
+        food_list_one = make_a_meal_plan(pantry, user_macro_goals)
+        yield food_list_one
+        n -= 1
+
+# def my_generator(n):
+#     while n > 0:
+#         yield n
+#         n -= 1
 
 def view_pantry(pantry):
     print('Pantry Contents:')
@@ -106,7 +124,7 @@ def print_dict_info(list_of_foods, food_display_dict):
     for i in list_of_foods[1: -7]:
         if i not in already_printed_list:
             if isinstance(i, Food):
-                print("{}: {} {}".format(i, food_display_dict[i], i.portion))
+                print("{}: {} x {}".format(i.name, food_display_dict[i], i.portion))
             else: print("{}: {}".format(i, food_display_dict[i]))
             already_printed_list.append(i)
     print('')
@@ -114,6 +132,37 @@ def print_dict_info(list_of_foods, food_display_dict):
     print('')
     for i in list_of_foods[-5: -1]:
         print(i)
+
+def user_search(string):
+    search = nix.search(string).json()
+    search_list = []
+    results_list = []
+    for i in range(5):
+        search_list.append(search['hits'][i]['_id'])
+    for i in search_list:
+        search_item = nix.item(id=i).json()
+        new_food = Food(search_item['item_name'], 
+                        search_item['nf_serving_size_qty'],
+                        search_item['nf_calories'],
+                        search_item['nf_protein'],
+                        search_item['nf_total_carbohydrate'],
+                        search_item['nf_total_fat'],
+                        ['User Search'],
+                        0)
+        results_list.append(new_food)
+    return results_list
+
+def save_results(list):
+    user_save = input('Save any of these items?'
+                      ' Enter a number 1-5 or press n\n: ')
+    if user_save == 'n': return None
+    else: 
+        user_number = int(user_save)
+        user_number -= 1
+        return list[user_number]
+
+def add_food_to_pantry(pantry, food_item):
+    pantry.food_list.append(food_item)
 
 
 
