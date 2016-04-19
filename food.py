@@ -78,11 +78,6 @@ def my_generator(n, pantry, user_macro_goals):
         yield food_list_one
         n -= 1
 
-# def my_generator(n):
-#     while n > 0:
-#         yield n
-#         n -= 1
-
 def view_pantry(pantry):
     print('Pantry Contents:')
     print('')
@@ -102,10 +97,11 @@ def write_foods_to_list(list_of_foods):
     for i in list_of_foods:
         my_string = ("{},{},{}," 
                      "{},{},{},"
-                     "{}").format(i.name, i.portion,
+                     "{},{}").format(i.name, i.portion,
                                   i.calories, i.protein_grams, 
                                   i.carbs_grams, 
-                                  i. fat_grams, i.category_list)
+                                  i.fat_grams, i.category_list,
+                                  i.times_used)
         list_to_write.append(my_string + '\n')
     return list_to_write
 
@@ -134,6 +130,11 @@ def print_dict_info(list_of_foods, food_display_dict):
         print(i)
 
 def user_search(string):
+    '''This function takes a string from the user
+    and searches the nutritionix database for that
+    search term. Then, it takes the first five hits
+    and returns them in a list.'''
+    nix = Nutritionix(app_id="79c91dc3", api_key="72d996fc49df21a052dacdc132d65cb9")
     search = nix.search(string).json()
     search_list = []
     results_list = []
@@ -164,6 +165,42 @@ def save_results(list):
 def add_food_to_pantry(pantry, food_item):
     pantry.food_list.append(food_item)
 
+def make_a_list_of_categories(list):
+    still_adding = 1
+    while still_adding:
+        user_item = input('What category would you like to add?\n: ')
+        list.append(user_item)
+        user_continue = input('Add more categories?\n: ')
+        if user_continue == 'n': still_adding -= 1
+
+def user_add_food_to_pantry(pantry):
+    user_food_category_list = []
+    user_food_name = input('What kind of food are you adding?\n: ')
+    user_food_portion = input('What is the serving size for that?\n: ')
+    user_food_calories = int(input('How many calories does that have?\n: '))
+    user_food_protein = int(
+        input('How much protein does that have, in grams?\n: '))
+    user_food_carbs = int(
+        input('How many carbs does that have, in grams?\n: '))
+    user_food_fat = int(
+        input('How much fat does that have, in grams?\n: '))
+    user_food_category_choice = input('Add categories?')
+    if user_food_category_choice != 'n':
+        make_a_list_of_categories(user_food_category_list)
+    new_food = Food(user_food_name, user_food_portion, user_food_calories,
+                    user_food_protein, user_food_carbs, user_food_fat,
+                    user_food_category_list, 0)
+    pantry.food_list.append(new_food)
+
+def get_user_macro_goals():
+    print('Tell us your macro goals so we can sort your food!')
+    user_protein_goal = int(
+        input('How many grams of protein do you need?\n: '))
+    user_carb_goal = int(input('How many grams of carbs do you need?\n: '))
+    user_fat_goal = int(input('How many grams of fat do you need?\n: '))
+    macro_list = [user_protein_goal, user_carb_goal, user_fat_goal]
+    return macro_list
+
 
 
 banana = Food('Banana', 'One-Medium', 105, 1.3, 27, 0.4, 
@@ -186,19 +223,70 @@ initial_food_list = [banana, turkey, oatmeal, cereal, cookie, lettuce,
                      salmon]
 my_pantry = Pantry("Peter's Pantry", initial_food_list)
 
-user_protein_goal = 140
-user_carb_goal = 280
-user_fat_goal = 38
-# list_protein_tally = 0
-# list_carb_tally = 0
-# list_fat_tally = 0
-# list_calories_tally = 0
-user_macro_goals = [140, 280, 38]
-master_food_list = []
+# view_pantry(my_pantry)
+# user_add_food_to_pantry(my_pantry)
+# view_pantry_details(my_pantry)
 
-my_meal_plan = sort_meal_plans(my_pantry, user_macro_goals)
-my_meal_dict = display_suggested_foods(my_meal_plan[0])
-print_dict_info(my_meal_plan[0], my_meal_dict)
+def user_menu(my_pantry, user_macro_goals):
+    user_prompt_list = ['Search Online', 'Add to Pantry', 
+                        'View Pantry', 'Enter Macro Goals', 
+                        'Get a Meal Plan']
+    print('Welcome to "What Should I Eat"!')
+    print('\nThings We Can Do:')
+    for i in user_prompt_list:
+        print(i)
+
+    print('\nTo begin, enter the first word of the option you want.')
+    user_menu_nav = input(': ')
+    lower_user_menu_nav = user_menu_nav.lower()
+    if lower_user_menu_nav == 'search':
+        user_search_param = input('Search the Nutritionix Database: ')
+        user_search_results = user_search(user_search_param)
+        for i in user_search_results:
+            print(i)
+        user_save = save_results(user_search_results)
+        if user_save:
+            add_food_to_pantry(my_pantry, user_save)
+    elif lower_user_menu_nav == 'add':
+        user_add_food_to_pantry(my_pantry)
+    elif lower_user_menu_nav == 'view':
+        print('Overview:')
+        view_pantry(my_pantry)
+        print('\n---\n')
+        print('Details:')
+        view_pantry_details(my_pantry)
+    elif lower_user_menu_nav == 'enter':
+        user_macro_goals = get_user_macro_goals()
+    elif lower_user_menu_nav == 'get':
+        my_meal_plan = sort_meal_plans(my_pantry, user_macro_goals)
+        my_meal_dict = display_suggested_foods(my_meal_plan[0])
+        print_dict_info(my_meal_plan[0], my_meal_dict)
+
+
+go_on = 1
+count = 1
+while go_on:
+    if count > 0:
+        user_macro_goals = get_user_macro_goals()
+        count -= 1
+    user_menu(my_pantry, user_macro_goals)
+    user_loop = input('Continue?\n: ')
+    if user_loop == 'n': go_on -= 1
+    os.system('clear')
+
+
+# user_protein_goal = 140
+# user_carb_goal = 280
+# user_fat_goal = 38
+# user_macro_goals = [140, 280, 38]
+# master_food_list = []
+
+# my_meal_plan = sort_meal_plans(my_pantry, user_macro_goals)
+# my_meal_dict = display_suggested_foods(my_meal_plan[0])
+# print_dict_info(my_meal_plan[0], my_meal_dict)
+
+
+#########----------------
 
 #food_list_to_write = write_foods_to_list(my_pantry.food_list)
 #print(food_list_to_write)
