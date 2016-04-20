@@ -261,6 +261,7 @@ def user_menu(my_pantry, user_macro_goals):
         my_meal_plan = sort_meal_plans(my_pantry, user_macro_goals)
         my_meal_dict = display_suggested_foods(my_meal_plan[0])
         print_dict_info(my_meal_plan[0], my_meal_dict)
+    return user_macro_goals
 
 
 go_on = 1
@@ -269,7 +270,7 @@ while go_on:
     if count > 0:
         user_macro_goals = get_user_macro_goals()
         count -= 1
-    user_menu(my_pantry, user_macro_goals)
+    user_macro_goals = user_menu(my_pantry, user_macro_goals)
     user_loop = input('Continue?\n: ')
     if user_loop == 'n': go_on -= 1
     os.system('clear')

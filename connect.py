@@ -2,8 +2,6 @@ import os
 import random
 import time
 
-
-
 class Board:
     def __init__(self, b_list):
         self.b_list = b_list
