@@ -13,7 +13,6 @@ body {
 
 .leftboard {
     border-left: 1px solid goldenrod;
-    /*border-right: 1px solid gold;*/
 }
 
 .list_heading {
@@ -31,6 +30,8 @@ li {
 section {
     border-left: 2px solid darkorchid;
 }
+
+
 
 .italia {
     font-style: italic;
@@ -94,8 +95,8 @@ img {
 
     p {
     max-width: 75%;
-    padding: 5%;
-    padding-left: 1%;
+    margin-right: 12.5%;
+    margin-left: 12.5%;
     }
 
     .container {
@@ -112,6 +113,39 @@ img {
         width: 70%;
         margin-left: 15%;
         margin-right: 15%;
+    }
+    ol {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        padding-left: none;
+        padding-right: none;
+    }
+
+    li {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        padding-left: none;
+        padding-right: none;
+    }
+
+    #my_exception {
+    border-left: 2px solid darkorchid;
+    border-bottom: 2px solid darkorchid;
+    }
+
+    section {
+        border: none;
+    }
+
+    #little_div {
+    margin-left: 0;
+    width: 100%; 
+    }
+
+    .leftboard {
+    border-left: none;
     }
 
 }
