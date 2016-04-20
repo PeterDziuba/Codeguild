@@ -1,0 +1,85 @@
+body {
+    background-color: purple;
+    color: orange;
+}
+
+a {
+    color: pink;
+}
+
+#london {
+    color: white;
+}
+
+#dublin {
+    color: lime;
+}
+
+#portland {
+    color: orangered;
+}
+
+#santa {
+    color: crimson;
+}
+
+#couv {
+    color: cyan;
+}
+
+#seattle {
+    color: palegreen;
+}
+
+#sydney {
+    color: coral;
+}
+
+#auckland {
+    color: black;
+}
+
+#munich {
+    color: yellow;
+}
+
+#amster {
+    color: red;
+}
+
+#paris {
+    color: dodgerblue;
+}
+
+#pest {
+    color: gainsboro;
+}
+
+#more {
+    color: aquamarine;
+}
+
+blockquote {
+    font-family: fantasy;
+}
+
+img {
+    border-radius: 25px;
+    background: black;
+    padding: 5px; 
+    width: 200px;
+    height: 250px;
+}
+
+ol{
+list-style: none;
+width: 200px;
+border-width: 200px;
+border-left: solid 1px magenta;
+border-top: solid 1px magenta;
+padding: 0.5em
+}
+
+li:before {
+    content: "☞";
+}
