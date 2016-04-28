@@ -4,7 +4,7 @@ body {
     padding: 0;
 }
 
-div {
+.divy {
     padding: 0;
     margin-bottom: 10px;
     margin-right: 20px;
@@ -14,7 +14,7 @@ div {
     border: 1px solid black;
 }
 
-section {
+.sectiony {
     background-color: lime;
     border: 1px solid black;
     margin-top: 10px;
@@ -60,16 +60,19 @@ p {
 .left_green {
     margin-right: 5px;
     margin-left: 10px;
+    width: 20%;
 }
 
 .middle_green {
     margin-right: 5px;
     margin-left: 5px;
+    width: 20%;
 }
 
 .right_green {
     margin-left: 5px;
     margin-right: 10px;
+    width: 20%;
 }
 
 .reg_sec {
