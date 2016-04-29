@@ -11,11 +11,11 @@ var notContains =  function(a, obj) {
     return true;
 }
 
-var findSumPairs = function(list, list_length, sum) {
+var findSumPairs = function(list, sum) {
     var func_pair_list = [];
     var my_item_list = [];
-    for (var i=0; i<list_length; i++) {
-        for (var j=0; j<list_length; j++) {
+    for (var i=0; i<list.length; i++) {
+        for (var j=0; j<list.length; j++) {
             if (sum - list[i] === list[j]) {
                 var my_list = [list[i], list[j]];
                 if((notContains(my_item_list, list[i])) && (notContains(my_item_list, list[j]))) {
@@ -29,8 +29,7 @@ var findSumPairs = function(list, list_length, sum) {
     return func_pair_list
 };
 
-var my_list_length = pair_list.length;
-var my_sum = findSumPairs(pair_list, my_list_length, 10);
+var my_sum = findSumPairs(pair_list, 10);
 for(var i = 0; i < my_sum.length; i++){
     console.log(my_sum[i]);
 }
