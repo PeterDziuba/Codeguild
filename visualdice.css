@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    background-color: lime;
+}
+
+input {
+    margin: 10px;
+}
+
+img {
+    border: 5px solid black;
+    margin: 10px;
+}
+
+h1 {
+    margin: 10px;
+}

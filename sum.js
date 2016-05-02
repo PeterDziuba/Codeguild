@@ -1,6 +1,6 @@
 "use strict";
 
-var pair_list = [5, 7, 1, -1, 12, 3, 4, 6, 22, 11, 2, 0];
+var pair_list = [5, 7, 1, -1, 12, 3, 4, 6, 22, 11, 2, 0, 7];
 
 var notContains =  function(a, obj) {
     for (var i = 0; i < a.length; i++) {
@@ -28,6 +28,7 @@ var findSumPairs = function(list, sum) {
     }
     return func_pair_list
 };
+
 
 var my_sum = findSumPairs(pair_list, 10);
 for(var i = 0; i < my_sum.length; i++){
