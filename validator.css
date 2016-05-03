@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+}
+
+input {
+    margin: 10px;
+}
+
+button {
+    margin: 10px;
+}
+
+.error-class {
+    background-color: yellow;
+}
+
+.error-proof {
+    background-color: white;
+}
+
+.warning {
+    color: gold;
+}
+
+p {
+    margin: 10px;
+}
+form {
+    margin: 10px;
+}
+
+#form-header-success {
+    background-color: green;
+}
+
+#form-header-success p {
+    color: lime;
+}
+
+#form-header-failure {
+    background-color: darkred;
+}
+
+#form-header-failure p {
+    color: red;
+}

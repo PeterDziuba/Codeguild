@@ -69,19 +69,10 @@ function removeAllImages() {
     }
 }
 
-// function createArrayOfImageSources() {
-//     var images = document.getElementsByTagName('img');
-//     var imageArray = [];
-//     var mySRC = $("img").attr("src");
-//     imageArray.push(mySRC);
-//     console.log(imageArray);
-// }
-
 function countDice() {
     var dieCount = 0;
     $("img").each(function() {  
         var imgsrc = this.src;
-        console.log(imgsrc);
         if (imgsrc === "file://localhost/Users/htdzi/Documents/codeguild/die_01.gif") {
             dieCount += 1;
         }
@@ -101,7 +92,6 @@ function countDice() {
             dieCount += 6;
         }
     });  
-    console.log(dieCount);
     return dieCount;
 }
 
