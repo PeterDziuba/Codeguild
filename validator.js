@@ -42,17 +42,24 @@ $("#phone-number").on("blur", function (event) {
         
 
 $("form").on("submit", function (event) {
+    var myName = $("#user-name");
+    var myBirthday = $("#birth-day");
+    var myPhoneNumber = $("#phone-number");
     event.preventDefault();
-    console.log(myName.val());
-    console.log(myBirthday.val());
-    console.log(myPhoneNumber.val());
-    if((isValidName(myName)) && (isValidBirthDay(myBirthday)) && (isValidPhoneNumber(myPhoneNumber))){
-        $("#form-header-success").append("<p>Successfully Submitted</p>");
-        $("#form-header-failure").empty();
+    if((myName.val() === "") && (myBirthday.val() === "") && (myPhoneNumber.val() === "")) {
+        $("#form-header-failure").append("<p>Fill Out the Form Before Submitting</p>");
+        $("#form-header-success").empty();
     }
     else {
-        $("#form-header-failure").append("<p>Something Went Wrong! Try Again</p>")
-        $("#form-header-success").empty();
+       
+        if((isValidName(myName)) && (isValidBirthDay(myBirthday)) && (isValidPhoneNumber(myPhoneNumber))){
+            $("#form-header-success").append("<p>Successfully Submitted</p>");
+            $("#form-header-failure").empty();
+        }
+        else {
+            $("#form-header-failure").append("<p>Something Went Wrong! Try Again</p>");
+            $("#form-header-success").empty();
+        }
     }
 })
 
@@ -73,7 +80,7 @@ function isValidName(name) {
     var aName=name.val();
     aName.split();
     if (aName.length === 0) {
-        return false;
+        return true;
     }
     else if (aName.length > 0) {
         for(var i = 0; i < aName.length; i += 1) {
@@ -92,7 +99,7 @@ function isValidBirthDay(birthDay) {
     var aBirthDay = birthDay.val();
     aBirthDay.split();
     if (aBirthDay.length === 0){
-        return false;
+        return true;
     }
     else if (aBirthDay.length === 10){
         for(var i = 0; i < 4; i += 1) {
@@ -123,7 +130,7 @@ function isValidPhoneNumber(phoneNumber) {
     var aPhoneNumber = phoneNumber.val();
     aPhoneNumber.split();
     if (aPhoneNumber.length === 0){
-        return false;
+        return true;
     }
     else if (aPhoneNumber.length === 12){
         for(var i = 0; i < 3; i += 1) {
