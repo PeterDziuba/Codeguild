@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    background-color: magenta;
+}
+
+form {
+    margin: 10px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.die-box {
+    margin: 10px;
+    border: 1px solid black;
+    width: 30px;
+}
+
+.flex-container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
+h1 {
+    margin: 10px;
+}
+
+p {
+    color: red;
+    font-size: 20px;
+}
