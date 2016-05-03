@@ -14,10 +14,10 @@ function makeDice(number) {
         event.preventDefault();
         myCounter -= aDieFace;
         $("h1").text(myCounter);
-        replaceADie(aDieFaceParagraph, number);
+        replaceADieBox(aDieBox, number);
     })
     var aDieBox = $("<div class='die-box'></div>").append(aDieFaceParagraph);
-    var xForBox = $("<p>X</p>");
+    var xForBox = $("<p class='xbox'>X</p>");
     xForBox.on("click", function (event) {
         event.preventDefault();
         aDieBox.remove();
@@ -28,7 +28,7 @@ function makeDice(number) {
     return aDieBox;
 }
 
-function replaceADie(aDie, number) {
+function replaceADieBox(aDieBox, number) {
     var newDieFace = Math.floor((Math.random() * number) + 1);
     myCounter += newDieFace;
     $("h1").text(myCounter);
@@ -37,9 +37,18 @@ function replaceADie(aDie, number) {
         event.preventDefault();
         myCounter -= newDieFace;
         $("h1").text(myCounter);
-        replaceADie(newDieFaceParagraph, number);
+        replaceADieBox(aNewDieBox, number);
     })
-    aDie.replaceWith(newDieFaceParagraph);
+    var aNewDieBox = $("<div class='die-box'></div>").append(newDieFaceParagraph);
+    var newXForBox = $("<p class='xbox'>X</p>");
+    newXForBox.on("click", function (event) {
+        event.preventDefault();
+        aNewDieBox.remove();
+        myCounter -= newDieFace;
+        $("h1").text(myCounter);
+    })
+    aNewDieBox.append(newXForBox);
+    aDieBox.replaceWith(aNewDieBox);
 }
 
 
