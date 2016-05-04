@@ -1,0 +1,9 @@
+.flex-container {
+    display: flex;
+    border: 1px solid black;
+    width: 600px;
+}
+
+p {
+    margin: 40px;
+}
