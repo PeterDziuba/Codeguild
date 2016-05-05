@@ -4,6 +4,23 @@
     width: 600px;
 }
 
+.next-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
 p {
     margin: 40px;
+}
+
+img {
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+}
+
+body {
+    background-color: orangered;
 }
