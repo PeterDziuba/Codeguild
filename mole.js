@@ -6,8 +6,14 @@ function makeAMole() {
         event.preventDefault();
         var newMoleHole = $("<img src='hole.jpg' alt='mole hole'>");
         newMole.replaceWith(newMoleHole);
+        molesWhacked += 1;
+        molesWhackedCounter();
     })
     return newMole;
+}
+var molesWhacked = 0;
+function molesWhackedCounter() {
+    $("#moles-whacked").text(molesWhacked);
 }
 
 var moleSpots = ["#row1column1 img", "#row2column1 img", "#row3column1 img",
@@ -18,7 +24,7 @@ var moleSpots = ["#row1column1 img", "#row2column1 img", "#row3column1 img",
                  "#row4column4 img", "#row1column5 img", "#row2column5 img",
                  "#row3column5 img", "#row4column5 img"]
 
-function dropAMole(location) { //Use this to put the mole on our grid/board
+function dropAMole(location) { 
     var newMole = makeAMole();
     location.replaceWith(newMole);
 }
@@ -34,6 +40,7 @@ function intervalDrop () {
     setInterval(whereToDrop, 3000);
 }
 
-$(document).ready( function() {
+
+$(document).ready(function() {
     intervalDrop();
 });
