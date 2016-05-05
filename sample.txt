@@ -1,0 +1,4 @@
+Hello and welcome to the sample text!
+I like this method a lot. Because, you see, this is the sample file.
+We choose to eat breakfast because we are hungry, not because it is easy.
+Coding in python is great? I don't know.

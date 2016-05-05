@@ -1,0 +1,18 @@
+from tkinter import *
+
+my_variable = Tk()
+top_frame = Frame(my_variable)
+top_frame.pack()
+bottom_frame = Frame(my_variable)
+bottom_frame.pack(side=BOTTOM)
+button_1 = Button(top_frame, text='click here!', fg='red')
+button_2 = Button(top_frame, text='click here!', fg='green')
+button_3 = Button(top_frame, text='click here!', fg='purple')
+button_4 = Button(bottom_frame, text='click here!', fg='orange')
+label_1 = Label(top_frame, text='My Label is Here!', fg='blue')
+button_1.pack(side=LEFT)
+button_2.pack(side=LEFT)
+button_3.pack(side=LEFT)
+label_1.pack(side=RIGHT)
+button_4.pack()
+my_variable.mainloop()
