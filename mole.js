@@ -11,7 +11,9 @@ function makeAMole() {
     })
     return newMole;
 }
+
 var molesWhacked = 0;
+
 function molesWhackedCounter() {
     $("#moles-whacked").text(molesWhacked);
 }
