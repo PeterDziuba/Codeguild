@@ -37,7 +37,7 @@ function whereToDrop () {
 }
 
 function intervalDrop () {
-    setInterval(whereToDrop, 3000);
+    setInterval(whereToDrop, 1000);
 }
 
 
