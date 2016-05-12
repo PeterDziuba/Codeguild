@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="flexcontainer">
-    <form id="funny-form">
+    <form id="funny-form">{% csrf_token %}
         <div><p>Please Enter a Joke:</p></div>
         <div>Setup:<input type="text" id="setup"></div>
         <div>Punchline:<input type="text" id="punchline"</div>
@@ -19,6 +19,7 @@
 
 
     <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    <script src="/static/jokes/ajax_setup.js"></script>
     <script src="/static/jokes/jokes.js"></script>
 </body>
 </html>

@@ -1,16 +1,33 @@
 "use strict";
-
-$("#funny-form").on("submit", function(event) {
-    event.preventDefault();
-    $.ajax({
-        url: "/jokebank/",
-        data: {setup: $("#setup").val(),
-               punchline: $("#punchline").val()},
-        type: "GET",
+function postJokes(){
+    $("#funny-form").on("submit", function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/jokebank/",
+            data: {setup: $("#setup").val(),
+                   punchline: $("#punchline").val()},
+            type: "POST",
+        })
+        $("#setup").val("");
+        $("#punchline").val("");
     })
-    $("#setup").val("");
-    $("#punchline").val("");
-})
+}
+
+
+
+
+
+// $("#funny-form").on("submit", function(event) {
+//     event.preventDefault();
+//     $.ajax({
+//         url: "/jokebank/",
+//         data: {setup: $("#setup").val(),
+//                punchline: $("#punchline").val()},
+//         type: "POST",
+//     })
+//     $("#setup").val("");
+//     $("#punchline").val("");
+// })
 
 
 $(document).ready(function(){
@@ -18,5 +35,6 @@ $(document).ready(function(){
         event.preventDefault();
         $(event.target).children().removeClass("invisible");
     })
+    postJokes();
 });
 
