@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Got Jokes?</title>
+     {% load staticfiles %}
+    <link href="/static/jokes/jokes.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="flexcontainer">
+    <form id="funny-form">
+        <div><p>Please Enter a Joke:</p></div>
+        <div>Setup:<input type="text" id="setup"></div>
+        <div>Punchline:<input type="text" id="punchline"</div>
+        <div><button type="submit">HaHa</button></div>
+    </form>
+    <a href=/joke-list>Joke List</a>
+</div>
+
+
+    <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    <script src="/static/jokes/jokes.js"></script>
+</body>
+</html>
