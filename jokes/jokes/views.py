@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from . import logic
 
 def jokebank(request):
-    logic.save_to_jokebank(request)
+    punchline = request.POST['punchline']
+    setup = request.POST['setup']
+    logic.save_to_jokebank(punchline, setup)
     return HttpResponse(status=200)
 
 def jokes(request):
