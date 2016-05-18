@@ -1,0 +1,27 @@
+.hidden {
+    visibility: hidden;
+}
+
+body {
+    background-color: magenta;
+}
+
+li {
+    color: white;
+}
+
+a {
+    color: mintcream;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.whatever {
+    flex: 1;
+}

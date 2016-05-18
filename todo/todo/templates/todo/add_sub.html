@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{% static 'todo/todo.css' %}" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>Add Subcategory to {{ category.name }}</title>
+    </head>
+    <body>
+    <a href='/add'>Add</a>
+    <a href="{% url 'index' %}">Index</a>
+        <h1>Add Subcategory to {{ category.name }}</h1>
+        <form action="{% url 'add_sub_submit' category.id %}" method="post">
+            {% csrf_token %}
+            <label>Subcategory: <input type="text" name="our-name"></label>
+            <input type="submit">
+        </form>
+    </body>
+</html>

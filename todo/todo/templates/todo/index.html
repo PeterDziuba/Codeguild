@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link href="{% static 'todo/todo.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body class="flex-container">
+<a href='/add'>Add</a>
+
+<div class="flex-container whatever">
+    {% for i in cat_to_sub_list.items %}
+      
+        <li>{{i.0}}</li><a href="{% url 'category' i.0.id%}">+</a>
+            <ul>
+            {% for item in i.1 %}
+                <li>{{item}}</li><a href="{% url 'category' i.0.id 'deletesub' item.id %}">X</a>
+            {% endfor %}
+            </ul>
+    {% endfor %}
+</div>
+    
+
+</body>
+
+</html>

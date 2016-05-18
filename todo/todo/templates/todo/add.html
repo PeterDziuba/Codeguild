@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link href="{% static 'todo/todo.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<a href="{% url 'index' %}">Index</a>
+<form action="/submit/" method="POST" id="our-form">{% csrf_token %}
+    <input id="our-input" name='our-input'/>
+    <button type="submit">Go!</button>
+</form>
+
+    <div id="main">
+    <ul id="box"></ul>
+    </div>
+
+    
+
+</body>
+<script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+<!--  <script src="/static/eatingenough/ajax_setup.js"></script> -->
+<!-- <script src="/static/todo/todo.js"></script> -->
+</html>
