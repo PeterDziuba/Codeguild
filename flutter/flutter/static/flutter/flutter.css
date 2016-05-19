@@ -1,0 +1,22 @@
+.flex-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    background-color: tomato;
+}
+
+li {
+    margin: 10px;
+}
+
+.lily-pad {
+    padding: 50px;
+}
+
+a {
+    margin: 7px;
+}

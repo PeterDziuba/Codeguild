@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="{% static 'flutter/flutter.css' %}" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    <h1>Search</h1>
+    <div>
+        <form action="{% url 'submit-search' %}" method="POST" id="our-form">{% csrf_token %}
+            Query:<input id="query" name='query'/>
+            <button type="submit">Go!</button>
+        </form>
+    </div>
+
+</body>
+</html>

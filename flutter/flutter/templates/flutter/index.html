@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'flutter/flutter.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Flutter Index</title>
+</head>
+<body class="flex-container">
+<h1>Welcome to Flutter</h1>
+<div class="lily-pad"></div>
+<a href="{% url 'post' %}">Post</a>
+<a href="{% url 'search' %}">Search Content</a>
+<a href="{% url 'user-search' %}">Search Users</a>
+<div class="flex-container whatever">
+    {% for i in ten_flutts %}
+        <li>{{i}}</li>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

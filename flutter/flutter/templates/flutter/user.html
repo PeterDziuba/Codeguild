@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{% static 'flutter/flutter.css' %}" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>{{ flutt_user }}</title>
+    </head>
+    <body>
+        <h1>{{ flutt_user }}</h1>
+        <ol>
+            {% for flutt in flutts %}
+            <li>{{ flutt.text }}</li>
+            {% endfor %}
+        </ol>
+        <a href="{% url 'index' %}">Index</a>
+       
+    </body>
+</html>
