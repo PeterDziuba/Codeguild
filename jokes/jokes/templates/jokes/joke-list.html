@@ -1,0 +1,8 @@
+{% extends "jokes/header.html" %}
+{% block content %}
+    {% for joke in jokes %}
+        <a href="#" class="visible">{{joke.setup}}
+            <div class="invisible">{{joke.punchline}}</div>
+        </a>
+    {% endfor %}
+{% endblock %}

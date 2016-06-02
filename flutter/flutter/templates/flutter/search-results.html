@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="{% static 'flutter/flutter.css' %}" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <a href="{% url 'index' %}">Index</a>
+    {% for flutt in flutts %}
+    <li>{{flutt}}</li>
+    {% endfor %}
+
+</body>
+</html>

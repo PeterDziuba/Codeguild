@@ -1,0 +1,11 @@
+{% extends "jokes/header.html" %}
+
+
+{% block content %}
+{% for joke in object_list %}
+        <h5>
+        {{joke.setup}}
+        <div class="invisible">{{joke.punchline}}</div>
+        </h5>
+    {% endfor %}
+{% endblock %}

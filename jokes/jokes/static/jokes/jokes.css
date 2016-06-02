@@ -1,0 +1,31 @@
+div {
+    margin: 15px;
+}
+
+input {
+    margin: 3px;
+}
+
+form {
+    width: 40%;
+    border:1px solid black;
+}
+
+a {
+    margin: 20px;
+}
+
+.flexcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.invisible {
+    display: none;
+}
+
+.visible {
+    display: block;
+}

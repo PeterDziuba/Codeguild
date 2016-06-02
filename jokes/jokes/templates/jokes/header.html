@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hardy Harr Har</title>
+    {% load staticfiles %}
+    <link href="{% static 'jokes/jokes.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+<script src="{% static 'jokes/ajax_setup.js' %}"></script>
+<script src="{% static 'jokes/jokes.js' %}"></script>
+    <h2>Jokes!</h2>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

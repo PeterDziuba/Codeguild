@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{% static 'todo/todo.css' %}" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>{{ category.name }}</title>
+    </head>
+    <body>
+        <h1>{{ category.name }}</h1>
+        <ol>
+            {% for sub in subs %}
+            <li>{{ sub.name }}</li>
+            {% endfor %}
+        </ol>
+        <p><a href="{% url 'add_sub' category.id %}">Add Subcategory</a>
+        </p>
+    </body>
+</html>
