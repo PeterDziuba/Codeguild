@@ -66,7 +66,7 @@ def sort_for_user_word(user_word, my_pair_list):
 			user_word_list.append(pair)
 	return user_word_list
 
-hamlet_stripped = read_file('hamlet.txt')
+hamlet_stripped = read_file('/Users/htdzi/Documents/codeguild/hamlet.txt')
 words_of_hamlet = make_lines_into_words(hamlet_stripped)
 lower_case_hamlet = down_case(words_of_hamlet)
 no_punct_hamlet = strip_punctuation(lower_case_hamlet)
